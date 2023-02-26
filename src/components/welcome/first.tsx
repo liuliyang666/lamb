@@ -1,11 +1,12 @@
 import s from "./welcome.module.scss";
-import pot from "../../assets/icons/pot.svg";
 import { FunctionalComponent } from "vue";
 
 export const First: FunctionalComponent = () => {
   return (
     <div class={s.card}>
-      <img src={pot} />
+      <svg>
+        <use xlinkHref="#pot" />
+      </svg>
       <h2>
         会挣钱
         <br />
