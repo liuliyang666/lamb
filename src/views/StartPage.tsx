@@ -12,6 +12,12 @@ export const StartPage = defineComponent({
     };
     return () => (
       <div>
+        <Navbar>
+          {{
+            default: "小羊记账",
+            icon: <Icon name="menu" class={s.navIcon} />,
+          }}
+        </Navbar>
         <Center class={s.pot_wrapper}>
           <Icon name="pot" class={s.pot} />
         </Center>
