@@ -6,16 +6,16 @@
     }
 }
 
-.pot {
+svg.pot {
     width: 128px;
     height: 128px;
-
-    &_wrapper {
-        padding: 120px 0;
-    }
 }
 
-.navIcon {
+.pot_wrapper {
+    padding: 120px 0;
+}
+
+svg.navIcon {
     width: 30px;
     height: 30px;
     position: relative;
