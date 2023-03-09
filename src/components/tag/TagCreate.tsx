@@ -3,6 +3,7 @@ import { MainLayout } from "../../layouts/MainLayout";
 import { Icon } from "../../shared/Icon";
 import s from "./TagCreate.module.scss";
 import { emojiList } from "../../shared/emojiList";
+import { Button } from "../../shared/Button";
 export const TagCreate = defineComponent({
   props: {
     name: {
@@ -206,7 +207,7 @@ export const TagCreate = defineComponent({
               <p class={s.tips}>记账时长按标签即可进行编辑</p>
               <div class={s.formRow}>
                 <div class={s.formItem_value}>
-                  <button class={[s.formItem, s.button]}>确定</button>
+                  <Button class={[s.formItem, s.button]}>确定</Button>
                 </div>
               </div>
             </form>
