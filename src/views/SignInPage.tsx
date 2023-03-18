@@ -7,6 +7,7 @@ import { Button } from "../shared/Button";
 import { validate } from "../shared/validate";
 import axios from "axios";
 import { http } from "../shared/Http";
+import { useBool } from "../hooks/useBool";
 export const SignInPage = defineComponent({
   setup: (props, context) => {
     const formData = reactive({
@@ -18,6 +19,12 @@ export const SignInPage = defineComponent({
       code: [],
     });
     const refValidationCode = ref<any>();
+    const {
+      ref: refDisabled,
+      toggle,
+      on: disabled,
+      off: enable,
+    } = useBool(false);
     const onSubmit = (e: Event) => {
       e.preventDefault();
       Object.assign(errors, {
@@ -45,11 +52,13 @@ export const SignInPage = defineComponent({
       throw error;
     };
     const onClickSendValidationCode = async () => {
+      disabled();
       const response = await http
         .post("/validation_codes", {
           email: formData.email,
         })
-        .catch(onError);
+        .catch(onError)
+        .finally(enable);
       // 成功
       refValidationCode.value.startCount();
     };
@@ -78,6 +87,7 @@ export const SignInPage = defineComponent({
                   type="validationCode"
                   placeholder="请输入六位数字"
                   countFrom={1}
+                  disabled={refDisabled.value}
                   onClick={onClickSendValidationCode}
                   v-model={formData.code}
                   error={errors.code?.[0]}
