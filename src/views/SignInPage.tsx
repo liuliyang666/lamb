@@ -13,7 +13,7 @@ import { useRoute, useRouter } from "vue-router";
 export const SignInPage = defineComponent({
   setup: (props, context) => {
     const formData = reactive({
-      email: "1592218619@qq.com",
+      email: "",
       code: "",
     });
     const errors = reactive({
@@ -84,7 +84,6 @@ export const SignInPage = defineComponent({
                 <Icon class={s.icon} name="lamb" />
                 <h1 class={s.appName}>小羊记账</h1>
               </div>
-              <div>{JSON.stringify(formData)}</div>
               <Form onSubmit={onSubmit}>
                 <FormItem
                   label="邮箱地址"
