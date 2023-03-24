@@ -49,6 +49,6 @@ export const mockTagIndex: Mock = (config) => {
   } else if (kind === "income" && (!page || page === 1)) {
     return [200, createBody(25)];
   } else {
-    return [200, createTag(1)];
+    return [200, createBody(1)];
   }
 };
