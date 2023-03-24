@@ -1,6 +1,5 @@
-import { defineComponent, PropType, ref, onMounted } from "vue";
+import { defineComponent, PropType, ref } from "vue";
 import { MainLayout } from "../../layouts/MainLayout";
-import { Button } from "../../shared/Button";
 import { http } from "../../shared/Http";
 import { Icon } from "../../shared/Icon";
 import { Tabs, Tab } from "../../shared/Tabs";
@@ -27,7 +26,6 @@ export const ItemCreate = defineComponent({
         _mock: "tagIndex",
       });
     });
-
     return () => (
       <MainLayout class={s.layout}>
         {{
@@ -44,7 +42,7 @@ export const ItemCreate = defineComponent({
                     <Tags kind="income" />
                   </Tab>
                 </Tabs>
-                <div class={s.InputPad_wrapper}>
+                <div class={s.inputPad_wrapper}>
                   <InputPad />
                 </div>
               </div>
