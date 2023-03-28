@@ -6,10 +6,6 @@ declare module "*.vue" {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
-declare module "*.scss" {
-  const content: Record<string, any> = {};
-  export default content;
-}
 
 type JSONValue =
   | null
