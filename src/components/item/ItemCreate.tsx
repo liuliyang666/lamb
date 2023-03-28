@@ -10,6 +10,7 @@ import { Tags } from "./Tags";
 import { useRouter } from "vue-router";
 import { AxiosError } from "axios";
 import { Dialog } from "vant";
+import { BackIcon } from "../../shared/BackIcon";
 export const ItemCreate = defineComponent({
   props: {
     name: {
@@ -46,7 +47,7 @@ export const ItemCreate = defineComponent({
       <MainLayout class={s.layout}>
         {{
           title: () => "记一笔",
-          icon: () => <Icon name="left" class={s.navIcon} />,
+          icon: () => <BackIcon />,
           default: () => (
             <>
               <div class={s.wrapper}>

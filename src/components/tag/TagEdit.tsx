@@ -6,6 +6,7 @@ import { Rules, validate } from "../../shared/validate";
 import { TagForm } from "./TagForm";
 import { Button } from "../../shared/Button";
 import s from "./Tag.module.scss";
+import { BackIcon } from "../../shared/BackIcon";
 export const TagEdit = defineComponent({
   props: {
     name: {
@@ -40,7 +41,7 @@ export const TagEdit = defineComponent({
       <MainLayout>
         {{
           title: () => "新建标签",
-          icon: () => <Icon name="left" onClick={() => {}} />,
+          icon: () => <BackIcon />,
           default: () => (
             <>
               <TagForm />,
