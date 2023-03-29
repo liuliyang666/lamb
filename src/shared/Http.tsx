@@ -5,6 +5,7 @@ import {
   AxiosResponse,
 } from "axios";
 import axios from "axios";
+import { mockTagEdit } from "../mock/mock";
 import {
   mockSession,
   mockTagIndex,
@@ -87,6 +88,9 @@ const mock = (response: AxiosResponse) => {
       return true;
     case "tagShow":
       [response.status, response.data] = mockTagShow(response.config);
+      return true;
+    case "tagEdit":
+      [response.status, response.data] = mockTagEdit(response.config);
       return true;
   }
   return false;
