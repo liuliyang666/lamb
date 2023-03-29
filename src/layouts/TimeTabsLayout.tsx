@@ -37,7 +37,7 @@ export const TimeTabsLayout = defineComponent({
     const refSelected = ref("本月");
     const time = new Time();
     const tempTime = reactive({
-      start: new Time().format,
+      start: new Time().format(),
       end: new Time().format(),
     });
     const customTime = reactive<{

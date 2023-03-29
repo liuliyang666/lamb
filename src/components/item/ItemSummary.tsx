@@ -53,6 +53,7 @@ export const ItemSummary = defineComponent({
         fetchItems();
       }
     );
+
     const itemsBalance = reactive({
       expenses: 0,
       income: 0,
