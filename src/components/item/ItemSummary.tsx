@@ -50,7 +50,7 @@ export const ItemSummary = defineComponent({
                 <span>39</span>
               </li>
             </ul>
-            <ol>
+            <ol class={s.list}>
               {items.value.map((item) => (
                 <li>
                   <div class={s.sign}>
@@ -68,7 +68,7 @@ export const ItemSummary = defineComponent({
                 </li>
               ))}
             </ol>
-            <div>
+            <div class={s.more}>
               {hasMore.value ? (
                 <Button onClick={fetchItems}>加载更多</Button>
               ) : (

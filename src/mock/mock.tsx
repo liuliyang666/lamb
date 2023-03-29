@@ -20,7 +20,7 @@ export const mockItemIndex: Mock = (config) => {
       user_id: createId(),
       amount: Math.floor(Math.random() * 10000),
       tags_id: [createId()],
-      happen_at: faker.date.past().toString(),
+      happen_at: faker.date.past().toISOString(),
       kind: config.params.kind,
     }));
   const createBody = (n = 1, attrs?: any) => ({
