@@ -1,12 +1,19 @@
 import { Overlay } from "vant";
-import { defineComponent, PropType, reactive, ref } from "vue";
+import {
+  Component,
+  DefineComponent,
+  defineComponent,
+  PropType,
+  reactive,
+  ref,
+} from "vue";
 import { ItemSummary } from "../components/item/ItemSummary";
 import { Form, FormItem } from "../shared/Form";
 import { OverlayIcon } from "../shared/Overlay";
 import { Tab, Tabs } from "../shared/Tabs";
 import { Time } from "../shared/time";
-import { MainLayout } from "./MainLayout";
 import s from "./TimeTabsLayout.module.scss";
+import { MainLayout } from "./MainLayout";
 const demo = defineComponent({
   props: {
     startDate: {
@@ -65,7 +72,7 @@ export const TimeTabsLayout = defineComponent({
           default: () => (
             <>
               <Tabs
-                classPrefix={"customTabs"}
+                classPrefix="customTabs"
                 v-model:selected={refSelected.value}
                 onUpdate:selected={onSelect}
               >

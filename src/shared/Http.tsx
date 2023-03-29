@@ -1,17 +1,17 @@
-import {
+import axios, {
   AxiosError,
   AxiosInstance,
   AxiosRequestConfig,
   AxiosResponse,
 } from "axios";
-import axios from "axios";
-import { mockTagEdit } from "../mock/mock";
 import {
-  mockSession,
-  mockTagIndex,
   mockItemCreate,
+  mockSession,
+  mockTagEdit,
+  mockTagIndex,
   mockTagShow,
 } from "../mock/mock";
+
 type GetConfig = Omit<AxiosRequestConfig, "params" | "url" | "method">;
 type PostConfig = Omit<AxiosRequestConfig, "url" | "data" | "method">;
 type PatchConfig = Omit<AxiosRequestConfig, "url" | "data">;
@@ -24,7 +24,6 @@ export class Http {
       baseURL,
     });
   }
-
   get<R = unknown>(
     url: string,
     query?: Record<string, JSONValue>,
@@ -37,7 +36,6 @@ export class Http {
       method: "get",
     });
   }
-
   post<R = unknown>(
     url: string,
     data?: Record<string, JSONValue>,
@@ -45,7 +43,6 @@ export class Http {
   ) {
     return this.instance.request<R>({ ...config, url, data, method: "post" });
   }
-
   patch<R = unknown>(
     url: string,
     data?: Record<string, JSONValue>,
@@ -53,7 +50,6 @@ export class Http {
   ) {
     return this.instance.request<R>({ ...config, url, data, method: "patch" });
   }
-
   delete<R = unknown>(
     url: string,
     query?: Record<string, string>,
@@ -105,6 +101,7 @@ http.instance.interceptors.request.use((config) => {
   }
   return config;
 });
+
 http.instance.interceptors.response.use(
   (response) => {
     mock(response);

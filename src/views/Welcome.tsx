@@ -1,13 +1,13 @@
 import { defineComponent, ref, Transition, VNode, watchEffect } from "vue";
 import {
-  RouterView,
   RouteLocationNormalizedLoaded,
-  useRouter,
+  RouterView,
   useRoute,
+  useRouter,
 } from "vue-router";
 import { useSwipe } from "../hooks/useSwipe";
-import s from "./Welcome.module.scss";
 import { throttle } from "../shared/throttle";
+import s from "./Welcome.module.scss";
 
 const pushMap: Record<string, string> = {
   Welcome1: "/welcome/2",
@@ -15,7 +15,6 @@ const pushMap: Record<string, string> = {
   Welcome3: "/welcome/4",
   Welcome4: "/start",
 };
-
 export const Welcome = defineComponent({
   setup: (props, context) => {
     const main = ref<HTMLElement>();
@@ -37,7 +36,7 @@ export const Welcome = defineComponent({
       <div class={s.wrapper}>
         <header>
           <svg>
-            <use xlinkHref="#lamb" />
+            <use xlinkHref="#lamb"></use>
           </svg>
           <h1>小羊记账</h1>
         </header>

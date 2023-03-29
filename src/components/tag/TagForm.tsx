@@ -1,11 +1,12 @@
-import { defineComponent, PropType, reactive, onMounted } from "vue";
-import { Button } from "../../shared/Button";
-import { Form, FormItem } from "../../shared/Form";
-import { Rules, validate, hasError } from "../../shared/validate";
-import s from "./Tag.module.scss";
+import { defineComponent, onMounted, PropType, reactive, toRaw } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { Button } from "../../shared/Button";
+import { EmojiSelect } from "../../shared/EmojiSelect";
+import { Form, FormItem } from "../../shared/Form";
 import { http } from "../../shared/Http";
 import { onFormError } from "../../shared/onFormError";
+import { hasError, Rules, validate } from "../../shared/validate";
+import s from "./Tag.module.scss";
 export const TagForm = defineComponent({
   props: {
     id: Number,
@@ -16,7 +17,7 @@ export const TagForm = defineComponent({
       id: undefined,
       name: "",
       sign: "",
-      kind: route.query.kind?.toString(),
+      kind: route.query.kind!.toString(),
     });
     const errors = reactive<{ [k in keyof typeof formData]?: string[] }>({});
     const router = useRouter();

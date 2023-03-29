@@ -1,17 +1,15 @@
 import { defineComponent, PropType, reactive, ref } from "vue";
-import { MainLayout } from "../layouts/MainLayout";
-import { Icon } from "../shared/Icon";
-import s from "./SignInPage.module.scss";
-import { Form, FormItem } from "../shared/Form";
-import { Button } from "../shared/Button";
-import { validate, hasError } from "../shared/validate";
-import axios from "axios";
-import { http } from "../shared/Http";
-import { useBool } from "../hooks/useBool";
-import { history } from "../shared/history";
 import { useRoute, useRouter } from "vue-router";
-import { refreshMe } from "../shared/me";
+import { useBool } from "../hooks/useBool";
+import { MainLayout } from "../layouts/MainLayout";
 import { BackIcon } from "../shared/BackIcon";
+import { Button } from "../shared/Button";
+import { Form, FormItem } from "../shared/Form";
+import { http } from "../shared/Http";
+import { Icon } from "../shared/Icon";
+import { refreshMe } from "../shared/me";
+import { hasError, validate } from "../shared/validate";
+import s from "./SignInPage.module.scss";
 export const SignInPage = defineComponent({
   setup: (props, context) => {
     const formData = reactive({
@@ -71,9 +69,7 @@ export const SignInPage = defineComponent({
     const onClickSendValidationCode = async () => {
       disabled();
       const response = await http
-        .post("/validation_codes", {
-          email: formData.email,
-        })
+        .post("/validation_codes", { email: formData.email })
         .catch(onError)
         .finally(enable);
       // 成功

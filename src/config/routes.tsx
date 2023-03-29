@@ -1,5 +1,9 @@
 import { RouteRecordRaw } from "vue-router";
-import { First } from "../components/welcome/First";
+import { ItemCreate } from "../components/item/ItemCreate";
+import { ItemList } from "../components/item/ItemList";
+import { TagCreate } from "../components/tag/TagCreate";
+import { TagEdit } from "../components/tag/TagEdit";
+import { First } from "../components/welcome/first";
 import { FirstActions } from "../components/welcome/FirstActions";
 import { Forth } from "../components/welcome/Forth";
 import { ForthActions } from "../components/welcome/ForthActions";
@@ -7,17 +11,13 @@ import { Second } from "../components/welcome/Second";
 import { SecondActions } from "../components/welcome/SecondActions";
 import { Third } from "../components/welcome/Third";
 import { ThirdActions } from "../components/welcome/ThirdActions";
-import { Welcome } from "../views/Welcome";
-import { StartPage } from "../views/StartPage";
-import { ItemPage } from "../views/ItemPage";
-import { ItemList } from "../components/item/ItemList";
-import { ItemCreate } from "../components/item/ItemCreate";
-import { TagCreate } from "../components/tag/TagCreate";
-import { TagEdit } from "../components/tag/TagEdit";
-import { TagPage } from "../views/TagPage";
-import { SignInPage } from "../views/SignInPage";
-import { StatisticsPage } from "../views/StatisticsPage";
 import { http } from "../shared/Http";
+import { ItemPage } from "../views/ItemPage";
+import { SignInPage } from "../views/SignInPage";
+import { StartPage } from "../views/StartPage";
+import { StatisticsPage } from "../views/StatisticsPage";
+import { TagPage } from "../views/TagPage";
+import { Welcome } from "../views/Welcome";
 
 export const routes: RouteRecordRaw[] = [
   { path: "/", redirect: "/welcome" },
@@ -28,6 +28,7 @@ export const routes: RouteRecordRaw[] = [
       localStorage.getItem("skipFeatures") === "yes" ? next("/start") : next();
     },
     children: [
+      { path: "", redirect: "/welcome/1" },
       {
         path: "1",
         name: "Welcome1",
@@ -45,7 +46,7 @@ export const routes: RouteRecordRaw[] = [
       },
       {
         path: "4",
-        name: "Welcome",
+        name: "Welcome4",
         components: { main: Forth, footer: ForthActions },
       },
     ],
@@ -67,6 +68,12 @@ export const routes: RouteRecordRaw[] = [
       { path: ":id/edit", component: TagEdit },
     ],
   },
-  { path: "/sign_in", component: SignInPage },
-  { path: "/statistics", component: StatisticsPage },
+  {
+    path: "/sign_in",
+    component: SignInPage,
+  },
+  {
+    path: "/statistics",
+    component: StatisticsPage,
+  },
 ];
