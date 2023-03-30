@@ -1,14 +1,6 @@
-import {
-  defineComponent,
-  PropType,
-  ref,
-  onMounted,
-  reactive,
-  computed,
-} from "vue";
+import { defineComponent, PropType, ref, onMounted, computed } from "vue";
 import s from "./Charts.module.scss";
 import { FormItem } from "../../shared/Form";
-import * as echarts from "echarts";
 import { LineChart } from "./LineChart";
 import { PieChart } from "./PieChart";
 import { Bars } from "./Bars";
@@ -35,6 +27,7 @@ export const Charts = defineComponent({
         (item) => [item.happen_at, item.amount] as [string, number]
       );
     });
+
     onMounted(async () => {
       const response = await http.get<{ groups: Data1; summary: number }>(
         "/items/summary",
@@ -49,6 +42,7 @@ export const Charts = defineComponent({
       console.log(response.data);
       data1.value = response.data.groups;
     });
+
     return () => (
       <div class={s.wrapper}>
         <FormItem
