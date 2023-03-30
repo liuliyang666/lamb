@@ -1,13 +1,5 @@
 import { Overlay } from "vant";
-import {
-  Component,
-  DefineComponent,
-  defineComponent,
-  PropType,
-  reactive,
-  ref,
-} from "vue";
-import { ItemSummary } from "../components/item/ItemSummary";
+import { defineComponent, PropType, reactive, ref } from "vue";
 import { Form, FormItem } from "../shared/Form";
 import { OverlayIcon } from "../shared/Overlay";
 import { Tab, Tabs } from "../shared/Tabs";
@@ -31,6 +23,10 @@ export const TimeTabsLayout = defineComponent({
     component: {
       type: Object as PropType<typeof demo>,
       required: true,
+    },
+    rerenderOnSwitchTab: {
+      type: Boolean,
+      default: false,
     },
   },
   setup: (props, context) => {
@@ -80,6 +76,7 @@ export const TimeTabsLayout = defineComponent({
                 classPrefix="customTabs"
                 v-model:selected={refSelected.value}
                 onUpdate:selected={onSelect}
+                rerenderOnSelect={props.rerenderOnSwitchTab}
               >
                 <Tab name="本月">
                   <props.component
