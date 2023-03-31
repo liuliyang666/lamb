@@ -39,17 +39,13 @@ export class Time {
       .replace(/SSS/, msecond.toString().padStart(3, "0"));
   }
   firstDayOfMonth() {
-    return new Time(
-      new Date(this.date.getFullYear(), this.date.getMonth(), 1, 0, 0, 0)
-    );
+    return new Time(new Date(this.date.getFullYear(), this.date.getMonth(), 1, 0, 0, 0));
   }
   firstDayOfYear() {
     return new Time(new Date(this.date.getFullYear(), 0, 1, 0, 0, 0));
   }
   lastDayOfMonth() {
-    return new Time(
-      new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0, 0, 0, 0)
-    );
+    return new Time(new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0, 0, 0, 0));
   }
   lastDayOfYear() {
     return new Time(new Date(this.date.getFullYear() + 1, 0, 0, 0, 0, 0));
@@ -57,17 +53,10 @@ export class Time {
   getRaw() {
     return this.date;
   }
-  add(
-    amount: number,
-    unit:
-      | "year"
-      | "month"
-      | "day"
-      | "hour"
-      | "minute"
-      | "second"
-      | "millisecond"
-  ) {
+  getTimestamp() {
+    return this.date.getTime();
+  }
+  add(amount: number, unit: "year" | "month" | "day" | "hour" | "minute" | "second" | "millisecond") {
     // return new Time but not change this.date
     let date = new Date(this.date.getTime());
     switch (unit) {
@@ -78,14 +67,7 @@ export class Time {
         const d = date.getDate();
         date.setDate(1);
         date.setMonth(date.getMonth() + amount);
-        const d2 = new Date(
-          date.getFullYear(),
-          date.getMonth() + 1,
-          0,
-          0,
-          0,
-          0
-        ).getDate();
+        const d2 = new Date(date.getFullYear(), date.getMonth() + 1, 0, 0, 0, 0).getDate();
         date.setDate(Math.min(d, d2));
         break;
       case "day":
