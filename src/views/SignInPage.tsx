@@ -14,26 +14,21 @@ export const SignInPage = defineComponent({
   setup: (props, context) => {
     const formData = reactive({
       email: "",
-      code: "",
+      code: ""
     });
     const errors = reactive({
       email: [],
-      code: [],
+      code: []
     });
     const refValidationCode = ref<any>();
-    const {
-      ref: refDisabled,
-      toggle,
-      on: disabled,
-      off: enable,
-    } = useBool(false);
+    const { ref: refDisabled, toggle, on: disabled, off: enable } = useBool(false);
     const router = useRouter();
     const route = useRoute();
     const onSubmit = async (e: Event) => {
       e.preventDefault();
       Object.assign(errors, {
         email: [],
-        code: [],
+        code: []
       });
       Object.assign(
         errors,
@@ -43,16 +38,13 @@ export const SignInPage = defineComponent({
             key: "email",
             type: "pattern",
             regex: /.+@.+/,
-            message: "必须是邮箱地址",
+            message: "必须是邮箱地址"
           },
-          { key: "code", type: "required", message: "必填" },
+          { key: "code", type: "required", message: "必填" }
         ])
       );
       if (!hasError(errors)) {
-        const response = await http
-          .post<{ jwt: string }>("/session", formData)
-          .catch(onError);
-        console.log(response);
+        const response = await http.post<{ jwt: string }>("/session", formData).catch(onError);
         localStorage.setItem("jwt", response.data.jwt);
         // router.push('/sign_in?return_to='+ encodeURIComponent(route.fullPath))
         const returnTo = route.query.return_to?.toString();
@@ -68,10 +60,7 @@ export const SignInPage = defineComponent({
     };
     const onClickSendValidationCode = async () => {
       disabled();
-      const response = await http
-        .post("/validation_codes", { email: formData.email })
-        .catch(onError)
-        .finally(enable);
+      const response = await http.post("/validation_codes", { email: formData.email }).catch(onError).finally(enable);
       // 成功
       refValidationCode.value.startCount();
     };
@@ -110,9 +99,9 @@ export const SignInPage = defineComponent({
                 </FormItem>
               </Form>
             </div>
-          ),
+          )
         }}
       </MainLayout>
     );
-  },
+  }
 });
