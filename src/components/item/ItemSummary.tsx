@@ -1,11 +1,4 @@
-import {
-  defineComponent,
-  PropType,
-  ref,
-  onMounted,
-  reactive,
-  watch,
-} from "vue";
+import { defineComponent, PropType, ref, onMounted, reactive, watch } from "vue";
 import { FloatButton } from "../../shared/FloatButton";
 import { http } from "../../shared/Http";
 import s from "./ItemSummary.module.scss";
@@ -16,12 +9,12 @@ export const ItemSummary = defineComponent({
   props: {
     startDate: {
       type: String as PropType<string>,
-      required: false,
+      required: false
     },
     endDate: {
       type: String as PropType<string>,
-      required: false,
-    },
+      required: false
+    }
   },
   setup: (props, context) => {
     const items = ref<Item[]>([]);
@@ -31,16 +24,18 @@ export const ItemSummary = defineComponent({
       if (!props.startDate || !props.endDate) {
         return;
       }
-      const response = await http.get<Resources<Item>>("/items", {
-        happen_after: props.startDate,
-        happen_before: props.endDate,
-        page: page.value + 1,
-        _mock: "itemIndex",
-      });
+      const response = await http.get<Resources<Item>>(
+        "/items",
+        {
+          happen_after: props.startDate,
+          happen_before: props.endDate,
+          page: page.value + 1
+        },
+        { _mock: "itemIndex" }
+      );
       const { resources, pager } = response.data;
       items.value?.push(...resources);
-      hasMore.value =
-        (pager.page - 1) * pager.per_page + resources.length < pager.count;
+      hasMore.value = (pager.page - 1) * pager.per_page + resources.length < pager.count;
       page.value += 1;
     };
     onMounted(fetchItems);
@@ -57,18 +52,21 @@ export const ItemSummary = defineComponent({
     const itemsBalance = reactive({
       expenses: 0,
       income: 0,
-      balance: 0,
+      balance: 0
     });
     const fetchItemsBalance = async () => {
       if (!props.startDate || !props.endDate) {
         return;
       }
-      const response = await http.get("/items/balance", {
-        happen_after: props.startDate,
-        happen_before: props.endDate,
-        page: page.value + 1,
-        _mock: "itemIndexBalance",
-      });
+      const response = await http.get(
+        "/items/balance",
+        {
+          happen_after: props.startDate,
+          happen_before: props.endDate,
+          page: page.value + 1
+        },
+        { _mock: "itemIndexBalance" }
+      );
       Object.assign(itemsBalance, response.data);
     };
     onMounted(fetchItemsBalance);
@@ -78,7 +76,7 @@ export const ItemSummary = defineComponent({
         Object.assign(itemsBalance, {
           expenses: 0,
           income: 0,
-          balance: 0,
+          balance: 0
         });
         fetchItemsBalance();
       }
@@ -122,11 +120,7 @@ export const ItemSummary = defineComponent({
               ))}
             </ol>
             <div class={s.more}>
-              {hasMore.value ? (
-                <Button onClick={fetchItems}>加载更多</Button>
-              ) : (
-                <span>没有更多</span>
-              )}
+              {hasMore.value ? <Button onClick={fetchItems}>加载更多</Button> : <span>没有更多</span>}
             </div>
           </>
         ) : (
@@ -135,5 +129,5 @@ export const ItemSummary = defineComponent({
         <FloatButton iconName="add" />
       </div>
     );
-  },
+  }
 });

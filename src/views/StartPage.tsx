@@ -1,4 +1,4 @@
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
 import { RouterLink } from "vue-router";
 import { MainLayout } from "../layouts/MainLayout";
 import { Button } from "../shared/Button";
@@ -7,8 +7,16 @@ import { FloatButton } from "../shared/FloatButton";
 import { Icon } from "../shared/Icon";
 import { OverlayIcon } from "../shared/Overlay";
 import s from "./StartPage.module.scss";
+import { Toast } from "vant";
 export const StartPage = defineComponent({
   setup: (props, context) => {
+    onMounted(() => {
+      // Toast.loading({
+      //   message: '加载中',
+      //   forbidClick: true,
+      //   duration: 0
+      // })
+    });
     return () => (
       <MainLayout>
         {{
@@ -28,9 +36,9 @@ export const StartPage = defineComponent({
                 <FloatButton iconName="add" />
               </RouterLink>
             </>
-          ),
+          )
         }}
       </MainLayout>
     );
-  },
+  }
 });

@@ -9,18 +9,21 @@ export const Tags = defineComponent({
   props: {
     kind: {
       type: String as PropType<string>,
-      required: true,
+      required: true
     },
-    selected: Number,
+    selected: Number
   },
   emits: ["update:selected"],
   setup: (props, context) => {
     const { tags, hasMore, page, fetchTags } = useTags((page) => {
-      return http.get<Resources<Tag>>("/tags", {
-        kind: props.kind,
-        page: page + 1,
-        _mock: "tagIndex",
-      });
+      return http.get<Resources<Tag>>(
+        "/tags",
+        {
+          kind: props.kind,
+          page: page + 1
+        },
+        { _mock: "tagIndex" }
+      );
     });
     const onSelect = (tag: Tag) => {
       context.emit("update:selected", tag.id);
@@ -29,9 +32,7 @@ export const Tags = defineComponent({
     const currentTag = ref<HTMLDivElement>();
     const router = useRouter();
     const onLongPress = (tagId: Tag["id"]) => {
-      router.push(
-        `/tags/${tagId}/edit?kind=${props.kind}&return_to=${router.currentRoute.value.fullPath}`
-      );
+      router.push(`/tags/${tagId}/edit?kind=${props.kind}&return_to=${router.currentRoute.value.fullPath}`);
     };
     const onTouchStart = (e: TouchEvent, tag: Tag) => {
       currentTag.value = e.currentTarget as HTMLDivElement;
@@ -43,14 +44,8 @@ export const Tags = defineComponent({
       clearTimeout(timer.value);
     };
     const onTouchMove = (e: TouchEvent) => {
-      const pointedElement = document.elementFromPoint(
-        e.touches[0].clientX,
-        e.touches[0].clientY
-      );
-      if (
-        currentTag.value !== pointedElement &&
-        currentTag.value?.contains(pointedElement) === false
-      ) {
+      const pointedElement = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY);
+      if (currentTag.value !== pointedElement && currentTag.value?.contains(pointedElement) === false) {
         clearTimeout(timer.value);
       }
     };
@@ -86,5 +81,5 @@ export const Tags = defineComponent({
         </div>
       </>
     );
-  },
+  }
 });
