@@ -49,10 +49,9 @@ export const Charts = defineComponent({
           kind: kind.value,
           group_by: "happen_at"
         },
-        { _mock: "itemSummary" }
+        { _mock: "itemSummary", _autoLoading: true }
       );
       data1.value = response.data.groups;
-      console.log(data1.value);
     };
     onMounted(fetchData1);
     watch(() => kind.value, fetchData1);
