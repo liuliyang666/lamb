@@ -1,10 +1,5 @@
 import { defineComponent, ref, Transition, VNode, watchEffect } from "vue";
-import {
-  RouteLocationNormalizedLoaded,
-  RouterView,
-  useRoute,
-  useRouter,
-} from "vue-router";
+import { RouteLocationNormalizedLoaded, RouterView, useRoute, useRouter } from "vue-router";
 import { useSwipe } from "../hooks/useSwipe";
 import { throttle } from "../shared/throttle";
 import s from "./Welcome.module.scss";
@@ -13,13 +8,13 @@ const pushMap: Record<string, string> = {
   Welcome1: "/welcome/2",
   Welcome2: "/welcome/3",
   Welcome3: "/welcome/4",
-  Welcome4: "/start",
+  Welcome4: "/items"
 };
 export const Welcome = defineComponent({
   setup: (props, context) => {
     const main = ref<HTMLElement>();
     const { direction, swiping } = useSwipe(main, {
-      beforeStart: (e) => e.preventDefault(),
+      beforeStart: (e) => e.preventDefault()
     });
     const route = useRoute();
     const router = useRouter();
@@ -42,13 +37,7 @@ export const Welcome = defineComponent({
         </header>
         <main class={s.main} ref={main}>
           <RouterView name="main">
-            {({
-              Component: X,
-              route: R,
-            }: {
-              Component: VNode;
-              route: RouteLocationNormalizedLoaded;
-            }) => (
+            {({ Component: X, route: R }: { Component: VNode; route: RouteLocationNormalizedLoaded }) => (
               <Transition
                 enterFromClass={s.slide_fade_enter_from}
                 enterActiveClass={s.slide_fade_enter_active}
@@ -65,5 +54,5 @@ export const Welcome = defineComponent({
         </footer>
       </div>
     );
-  },
+  }
 });
