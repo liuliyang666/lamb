@@ -1,7 +1,7 @@
-import AxiosRequestConfig from "axios";
+import { AxiosRequestConfig } from "axios";
 declare module "axios" {
   export interface AxiosRequestConfig {
-    _autoLoading?: Boolean;
+    _autoLoading?: boolean;
     _mock?: string;
   }
 }

@@ -60,8 +60,14 @@ export const SignInPage = defineComponent({
     };
     const onClickSendValidationCode = async () => {
       disabled();
-      const response = await http
-        .post("/validation_codes", { email: formData.email }, { _autoLoading: true })
+      await http
+        .post(
+          "/validation_codes",
+          { email: formData.email },
+          {
+            _autoLoading: true
+          }
+        )
         .catch(onError)
         .finally(enable);
       // 成功
