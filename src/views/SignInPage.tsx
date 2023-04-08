@@ -9,7 +9,7 @@ import { http } from "../shared/Http";
 import { Icon } from "../shared/Icon";
 import { hasError, validate } from "../shared/validate";
 import s from "./SignInPage.module.scss";
-import { useMeStore } from "../store/useMeStore";
+import { useMeStore } from "../stores/useMeStore";
 export const SignInPage = defineComponent({
   setup: (props, context) => {
     const meStore = useMeStore();

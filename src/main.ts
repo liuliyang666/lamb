@@ -5,7 +5,7 @@ import { createRouter } from "vue-router";
 import { history } from "./shared/history";
 import "@svgstore";
 import { createPinia, storeToRefs } from "pinia";
-import { useMeStore } from "./store/useMeStore";
+import { useMeStore } from "./stores/useMeStore";
 
 const router = createRouter({ history, routes });
 const pinia = createPinia();
