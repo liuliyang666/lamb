@@ -2,28 +2,29 @@ import { Dialog } from "vant";
 import { defineComponent, PropType, ref, onMounted } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 import { Icon } from "./Icon";
-import { mePromise } from "./me";
 import s from "./Overlay.module.scss";
+import { useMeStore } from "../store/useMeStore";
 export const Overlay = defineComponent({
   props: {
     onClose: {
-      type: Function as PropType<() => void>,
-    },
+      type: Function as PropType<() => void>
+    }
   },
   setup: (props, context) => {
+    const meStore = useMeStore();
     const close = () => {
       props.onClose?.();
     };
     const route = useRoute();
     const me = ref<User>();
     onMounted(async () => {
-      const response = await mePromise;
+      const response = await meStore.mePromise;
       me.value = response?.data.resource;
     });
     const onSignOut = async () => {
       await Dialog.confirm({
         title: "确认",
-        message: "你真的要退出登录吗？",
+        message: "你真的要退出登录吗？"
       });
       localStorage.removeItem("jwt");
     };
@@ -69,7 +70,7 @@ export const Overlay = defineComponent({
         </div>
       </>
     );
-  },
+  }
 });
 export const OverlayIcon = defineComponent({
   setup: (props, context) => {
@@ -80,10 +81,8 @@ export const OverlayIcon = defineComponent({
     return () => (
       <>
         <Icon name="menu" class={s.icon} onClick={onClickMenu} />
-        {refOverlayVisible.value && (
-          <Overlay onClose={() => (refOverlayVisible.value = false)} />
-        )}
+        {refOverlayVisible.value && <Overlay onClose={() => (refOverlayVisible.value = false)} />}
       </>
     );
-  },
+  }
 });
