@@ -25,8 +25,9 @@
     }
 
     >.amount {
-        font-size: 20px;
+        font-size: 24px;
         color: var(--amount-text);
+        font-weight: bold;
     }
 }
 
@@ -47,6 +48,8 @@
     >button {
         border: none;
         background: var(--number-button-bg);
+        font-weight: bold;
+        font-size: 20px;
 
         &:nth-child(1) {
             grid-area: n1;

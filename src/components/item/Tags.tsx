@@ -56,7 +56,7 @@ export const Tags = defineComponent({
             <div class={s.sign}>
               <Icon name="add" class={s.createTag} />
             </div>
-            <div class={s.name}>新增</div>
+            <div class={s.name}>新增标签</div>
           </RouterLink>
           {tags.value.map((tag) => (
             <div
@@ -76,7 +76,7 @@ export const Tags = defineComponent({
               加载更多
             </Button>
           ) : (
-            <span class={s.noMore}>没有更多</span>
+            <span class={s.noMore}></span>
           )}
         </div>
       </>

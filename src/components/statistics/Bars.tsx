@@ -33,7 +33,7 @@ export const Bars = defineComponent({
             );
           })
         ) : (
-          <div>没有数据</div>
+          <div>暂时没有数据</div>
         )}
       </div>
     );

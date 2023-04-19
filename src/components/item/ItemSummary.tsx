@@ -65,7 +65,7 @@ export const ItemSummary = defineComponent({
     );
     return () =>
       !props.startDate || !props.endDate ? (
-        <div>请先选择时间范围</div>
+        <div>请选择时间范围</div>
       ) : (
         <div class={s.wrapper}>
           {itemStore.items && itemStore.items.length > 0 ? (
@@ -108,7 +108,7 @@ export const ItemSummary = defineComponent({
                 {itemStore.hasMore ? (
                   <Button onClick={() => itemStore.fetchNextPage(props.startDate, props.endDate)}>加载更多</Button>
                 ) : (
-                  <span>没有更多</span>
+                  <span>已全部加载</span>
                 )}
               </div>
             </>
