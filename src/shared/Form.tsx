@@ -92,7 +92,7 @@ export const FormItem = defineComponent({
                 onClick={props.onClick}
                 class={[s.formItem, s.button, s.validationCodeButton]}
               >
-                {isCounting.value ? `${count.value}秒后可重新发送` : "发送验证码"}
+                {isCounting.value ? `${count.value}秒后可重发` : "发送验证码"}
               </Button>
             </>
           );

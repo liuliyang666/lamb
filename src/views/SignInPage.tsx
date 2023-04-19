@@ -88,7 +88,7 @@ export const SignInPage = defineComponent({
                 <FormItem
                   label="邮箱地址"
                   type="text"
-                  placeholder="请输入邮箱，然后点击发送验证码"
+                  placeholder="请输入邮箱地址"
                   v-model={formData.email}
                   error={errors.email?.[0]}
                 />
@@ -96,8 +96,8 @@ export const SignInPage = defineComponent({
                   ref={refValidationCode}
                   label="验证码"
                   type="validationCode"
-                  placeholder="请输入六位数字"
-                  countFrom={1}
+                  placeholder="请输入验证码"
+                  countFrom={60}
                   disabled={refDisabled.value}
                   onClick={onClickSendValidationCode}
                   v-model={formData.code}
