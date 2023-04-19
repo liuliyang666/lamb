@@ -18,4 +18,10 @@ const div = ref<HTMLDivElement | null>(null);
 
 ## 如何开发
 
+pnpm run dev
+
 ## 如何打包
+
+pnpm run build  打包
+
+pnpm run preview  预览打包后的文件
