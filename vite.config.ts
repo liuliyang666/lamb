@@ -7,22 +7,23 @@ import { svgstore } from "./src/vite_plugins/svgstore";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "./",
   plugins: [
     vue(),
     vueJsx({
       transformOn: true,
-      mergeProps: true,
+      mergeProps: true
     }),
     svgstore(),
     styleImport({
-      resolves: [VantResolve()],
-    }),
+      resolves: [VantResolve()]
+    })
   ],
   server: {
     proxy: {
       "/api/v1": {
-        target: "http://121.196.236.94:3000",
-      },
-    },
-  },
+        target: "http://121.196.236.94:3000"
+      }
+    }
+  }
 });
