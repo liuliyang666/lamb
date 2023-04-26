@@ -25,3 +25,10 @@ pnpm run dev
 pnpm run build  打包
 
 pnpm run preview  预览打包后的文件
+
+## 部署
+
+```bash
+pnpm run build 
+bin/coscli cp -r dist cos://lamb-1317804797
+```
