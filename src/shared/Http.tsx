@@ -47,7 +47,7 @@ export class Http {
   }
 }
 
-export const http = new Http(DEBUG ? "api/v1" : "https://lamb-1317804797.cos-website.ap-shanghai.myqcloud.com/api/v1");
+export const http = new Http(DEBUG ? "api/v1" : " https://mangosteen2.hunger-valley.com/api/v1");
 http.instance.interceptors.request.use((config) => {
   const jwt = localStorage.getItem("jwt");
   if (jwt) {
